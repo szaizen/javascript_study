@@ -15,3 +15,11 @@ const c = Object.assign(a,b);
 c //{a: "a", b: "b"}
 
 
+/*
+2.const arry = ['aa','bb','cc','dd','ee','ff','gg'];
+のdd,ee,ffを新たな配列として返してください
+*/
+
+const arry = ['aa','bb','cc','dd','ee','ff','gg'];
+arry.slice(3,6); // ["dd", "ee", "ff"]
+
