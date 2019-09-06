@@ -23,3 +23,21 @@ c //{a: "a", b: "b"}
 const arry = ['aa','bb','cc','dd','ee','ff','gg'];
 arry.slice(3,6); // ["dd", "ee", "ff"]
 
+
+/*
+3.['a','b’] の要素をconsole出力してください e.g 'a'と'b'
+*/
+
+const arry = ['a','b'];
+
+arry[0]
+arry[1]
+
+// or
+
+arry.forEach(function(val){
+  console.log(val);
+})
+
+
+
