@@ -52,9 +52,12 @@ arry.forEach(function(value, index){
 // a0
 // b1
 
+/*
+5.任意の変数名の[1,2]を定義して配列かどうかを評価してください e.g true
+*/
 
-
-
+const arry = [1,2];
+Array.isArray(arry); // true
 
 
 
