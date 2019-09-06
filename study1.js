@@ -39,5 +39,22 @@ arry.forEach(function(val){
   console.log(val);
 })
 
+/*
+4.['a', 'b']の各要素にindex値を足した文字列を出力してくださいe.g 'a0'と'b1'
+*/
+
+const arry = ['a','b'];
+
+arry.forEach(function(value, index){
+  console.log(value + index);
+})
+
+// a0
+// b1
+
+
+
+
+
 
 
