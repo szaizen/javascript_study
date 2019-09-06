@@ -95,4 +95,23 @@ for (var key in obj) {
 //key2 bb
 
 
+/*
+9.こちらの ['a', 'b', 'c'] 配列の中の全ての要素を結合し、1つの文字列として出力してください。
+*/
+
+const arry = ['a', 'b', 'c'];
+let text = '';
+
+arry.forEach(function(value){
+  text += value;
+});
+
+text // "abc"
+
+// or
+
+arry.join("");
+
+
+
 
