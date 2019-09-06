@@ -60,4 +60,39 @@ const arry = [1,2];
 Array.isArray(arry); // true
 
 
+/*
+8.
+下記
+
+const obj = {
+ key: 'aa',
+ key2: 'bb'
+}
+の中のkeyとvalueを自身のプロパティのみ全て出力しなさい
+
+*/
+
+const obj = {
+ key: 'aa',
+ key2: 'bb'
+}
+
+Object.values(obj).forEach(function(val){
+  console.log(val);
+})
+
+// or
+
+for (var key in obj) {
+   if(obj.hasOwnProperty(key)){
+
+        console.log(key, obj[key]);
+
+    }
+}
+
+//key aa
+//key2 bb
+
+
 
