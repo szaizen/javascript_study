@@ -194,3 +194,17 @@ array[2] = 'yellow';
 
 array // ["red", "green", "yellow", "a4", "a5"]
 
+
+
+/*
+16.
+const array = ['a1','a2','a3','a4','a5']
+のインデックス2〜4の要素を取り出し、 配列として出力しなさい。 
+*/
+
+const array = ['a1','a2','a3','a4','a5']
+array.slice(1,4);
+
+
+
+
