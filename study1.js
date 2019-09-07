@@ -177,5 +177,20 @@ function fun (...arg){
 }
 
 
+/*
+15.
+配列
+const array = ['a1','a2','a3','a4','a5']
+の0〜2番目の要素をそれぞれ
+red, green, yellow
+に置き換えて配列にしてください。また実行した際の返り値を教えてください
+*/
 
+const array = ['a1','a2','a3','a4','a5'];
+
+array[0] = 'red';
+array[1] = 'green';
+array[2] = 'yellow';
+
+array // ["red", "green", "yellow", "a4", "a5"]
 
