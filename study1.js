@@ -147,4 +147,18 @@ const [a=5, b=7] = [1]
 a // 1
 
 
+/*
+13.next()を実行しただけ返り値が1増える関数を定義してください
+*/
+
+let count = 0;
+function next() {
+  return count += 1;
+}
+
+next(); //1
+next(); //2
+
+
+
 
