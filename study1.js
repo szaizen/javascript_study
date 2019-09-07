@@ -113,5 +113,30 @@ text // "abc"
 arry.join("");
 
 
+/*
+11.
+let arry =[
+  {id:1,name:'morita'},
+  {id:2,name:'kenji'},
+  {id:4,name:'uro'},
+  {id:3,name:'ken'}
+];
+をid番号が若い順にソートしたオブジェクトを含む配列を出力してください
+*/
+
+let arry =[
+  {id:1,name:'morita'},
+  {id:2,name:'kenji'},
+  {id:4,name:'uro'},
+  {id:3,name:'ken'}
+];
+
+arry.sort(function(a,b){
+ if(a.id > b.id) return 1;
+ if(a.id < b.id) return -1;
+});
+
+
+
 
 
