@@ -236,5 +236,12 @@ function random() {
 random(); // おはよう or こんにちは or おやすみなさい
 
 
+/*
+19.Object.createで空のオブジェクトを作成し、値が1のプロパティpを出力してください
+*/
+
+const obj = Object.create({}, {p: {value: 1}});
+obj.p //1
+
 
 
