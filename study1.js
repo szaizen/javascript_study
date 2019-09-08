@@ -244,4 +244,25 @@ const obj = Object.create({}, {p: {value: 1}});
 obj.p //1
 
 
+/*
+20.
+コンストラクタWhoの初期化時に'morita'(String)を渡しインスタンスプロパティnameに代入、
+インスタンスメソッドgetNameの返り値がWho.prototype.name値になる
+いわゆる「classのようなもの」を作成してください 
+※インスタンスメソッドはprototypeに代入してください
+*/
+
+function Who(name){
+  this.name = name;
+};
+
+Who.prototype.getName = function() {
+  console.log('Myname is ' + this.name);
+}
+
+let o = new Who('morita');
+
+o.getName(); // Myname is morita
+
+
 
