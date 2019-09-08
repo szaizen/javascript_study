@@ -220,3 +220,21 @@ text; // "a1/a2/a3/a4/a5"
 text.split('/'); //["a1", "a2", "a3", "a4", "a5"]
 
 
+
+/*
+18.配列['おはよう','こんにちは','おやすみなさい']の要素がランダムに出力される関数を書いてください。
+(配列に要素が追加される事を仮定してたものにしてください)
+*/
+
+const array = ['おはよう','こんにちは','おやすみなさい'];
+
+function random() {
+  let random = Math.floor(Math.random() * 3);
+  console.log(array[random]);
+}
+
+random(); // おはよう or こんにちは or おやすみなさい
+
+
+
+
