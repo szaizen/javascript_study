@@ -322,6 +322,25 @@ let temp = '10';
 Number(temp); // 数値に変換
 temp = typeof(temp) === 'number' ?  String(temp) : temp; // 型判定し、数値の場合文字列に変換
 
+/*
+25.
+カーリー化されたadd(1)(2)もしくはadd(1,2) を実行した際両方とも返り値3になる関数を定義しなさい。
+*/
+
+var add = function (a,b) {
+  if(typeof b == 'undefined') { // 部分適用
+    return function(b) {
+      return a + b;
+    }
+  }
+  return a + b; //完全適用
+};
+
+add(1)(2); // 3
+add(1,2);  // 3
+
+
+
 
 
 
