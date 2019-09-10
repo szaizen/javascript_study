@@ -265,4 +265,40 @@ let o = new Who('morita');
 o.getName(); // Myname is morita
 
 
+/*
+21.浅いコピー(shallow copy)と深いコピー(deep copy)の違いを説明してください
+*/
+
+/*
+shallow copy
+参照元のオブジェクトとコピー先のオブジェクト
+どちらも同じメモリを参照していること
+
+deep copy
+オブジェクトのみのコピーではなく、
+オブジェクトとメモリ上のデータの両方をコピー
+*/
+
+
+/*
+22.
+['B', 'a', 'c', 'e', 'k']
+上記の配列を大文字小文字区別なく順番通りにしてください。
+期待する値['a','B','c', 'e','k']
+*/
+
+array.sort(function(a,b){
+
+  a = a.toString().toLowerCase();
+  b = b.toString().toLowerCase();
+
+  if(a < b) {
+    return -1;
+  } else if(a > b) {
+    return 1;
+  }
+  return 0;
+});
+
+
 

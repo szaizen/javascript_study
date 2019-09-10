@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.1.2/css/bulma.css">
+  <title>ぐるなび</title>
+  <style type="text/css">
+    body {
+      margin: 20px 100px;
+    }
+    .control {
+      width: 300px;
+      margin: 10px 0;
+    }
+    #error_text {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+  <form action="" id="form">
+
+    <div class="field">
+      <label class="label">keyid</label>
+      <div class="control">
+        <input class="input" type="text" id="keyid">
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">店舗名</label>
+      <div class="control">
+        <input class="input" type="text" id="form_name">
+      </div>
+    </div>
+
+    <div class="field is-grouped">
+      <div class="control">
+        <input type="button" class="button is-danger" id="button" value="情報取得" />
+      </div>
+    </div>
+
+  </form>
+
+  <div id="error_text"></div>
+  <div id="result"></div>
+
+　<script>
+
+  var div = document.createElement('div');
+  
+  document.getElementById('button').onclick = function() {
+    
+    var keyid = document.forms.form.keyid.value;
+    var form_name = document.forms.form.form_name.value;
+    apiRequest(keyid,form_name);
+    
+  };
+
+  function apiRequest(keyid,form_name) {
+    
+    var api = 'https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid=' + keyid + '&name=' + form_name;
+
+    var request = new XMLHttpRequest();
+    request.responseType = 'json';
+    request.open('GET', api , true);
+    
+    request.onload = function () {
+      
+      // 結果がない場合エラー
+      if( request.response.rest == null ) {
+        apiErrorShow(request.response.error);
+      } else {
+        apiSuccess(request.response);
+      }
+
+    }
+
+    request.send();
+    
+  };
+
+  function apiErrorShow(data) {
+    for(var i = 0; i < data.length; i++) {
+      document.getElementById('error_text').appendChild(div).innerText = data[i].message;
+    }
+  }
+
+  function apiSuccess(data) {
+    for(var i = 0; i < data.rest.length; i++) {
+      var textNode = document.createTextNode(data.rest[i].name);
+      document.getElementById('result').appendChild(div).textNode;
+    }
+  }
+
+  </script>
+  
+</body>
+</html>
