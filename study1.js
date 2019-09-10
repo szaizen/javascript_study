@@ -313,3 +313,16 @@ array.sort(function(a,b){
 });
 
 
+/*
+24.
+文字列 '10'をNumber型にし、型判定し、数値かどうか評価後、文字列に変換してください
+*/
+
+let temp = '10';
+Number(temp); // 数値に変換
+temp = typeof(temp) === 'number' ?  String(temp) : temp; // 型判定し、数値の場合文字列に変換
+
+
+
+
+
