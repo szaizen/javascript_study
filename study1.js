@@ -457,3 +457,25 @@ for(var i = 0; i < temp.length; i++ ) {
 array // ["1", "2", "3", "4"]
 
 
+/*
+45. こちらは要素が2だったらループを抜けたいのだが期待どうり動かない 期待する出力 //0, 1
+
+[0, 1, 2, 3, 4].forEach(function(val, i) {
+  if (val === 2) {
+    // how do we stop?
+    return true;
+  }
+  console.log(val);
+});
+// 0, 1, 3, 4
+期待通りになるようにしてください
+*/
+
+for(var i = 0; array.length; i++){
+	if(array[i] == 2) { break; }	
+	console.log(array[i]);
+}
+// 0.1
+
+
+
