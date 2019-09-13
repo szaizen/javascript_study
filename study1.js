@@ -409,4 +409,17 @@ arr.forEach((el) => {
 });
 
 
+/*
+40. またイテレーターを使い順番に出力してください
+var arr = ['f', 'o', 'x', 'k'];
+var iterator = arr.values();
+*/
+
+iterator.next().value; // f
+iterator.next().value; // o
+iterator.next().value; // x
+iterator.next().value; // k
+
+
+
 
