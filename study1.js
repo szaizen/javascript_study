@@ -429,4 +429,9 @@ var array = ['a', 'b', 'c', 'd', 'e'];
 array.splice(2,0,'morita');
 array //  ["a", "b", "morita", "c", "d", "e"]
 
+/*
+42.これvar o = {};と同じ意味を持つコードをObjectのAPIを使って生成してください
+*/
+
+var o = Object.create(Object.prototype);
 
