@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>三目並べ</title>
+    <style>
+      body {
+        background-color: #11BDAC;
+      }
+      h1 {
+        color: #fff;
+      }
+      #body {
+        width: 500px;
+        margin: auto;
+        text-align: center;
+      }
+      .row {
+        display: flex;
+        justify-content: center;
+      }
+      .mas {
+        width: 100px;
+        height: 100px;
+        margin: -1px;
+        border: 3px solid #0CA192;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+      }
+      .mas:hover {
+        background-color: #29cebd;
+      }
+      .maru {
+        font-size: 60px;
+      }
+      .batu {
+        font-size: 90px;
+        font-weight: 900;
+        line-height: 0.6;
+        margin-top: -14px;
+      }
+      .clicked {
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    
+    <section id="body">
+      
+      <h1>三目並べしましょう</h1>
+    
+      <div id="frame">
+        
+        <div class="row">
+          <div id="mas1" class="mas"></div>
+          <div id="mas2" class="mas"></div>
+          <div id="mas3" class="mas"></div>
+        </div>
+        
+        <div class="row">
+          <div id="mas4" class="mas"></div>
+          <div id="mas5" class="mas"></div>
+          <div id="mas6" class="mas"></div>
+        </div>
+        
+        <div class="row">
+          <div id="mas7" class="mas"></div>
+          <div id="mas8" class="mas"></div>
+          <div id="mas9" class="mas"></div>
+        </div>
+        
+      </div>
+    
+    
+    </section>
+    
+  </body>
+  
+  <script type="text/javascript">
+    
+    /*
+    
+    クリックしたらイベント発火
+    
+    ・クリックされたところが◯
+    ・それ以外の場所に×
+    
+    イベント終了ロジック
+    ・横、縦、斜めに3つ揃った
+    ・クリックするところがない
+    
+    */
+    
+    mas = [
+      {id: 'mas1',checked: '',value: ''},
+      {id: 'mas2',checked: '',value: ''},
+      {id: 'mas3',checked: '',value: ''},
+      {id: 'mas4',checked: '',value: ''},
+      {id: 'mas5',checked: '',value: ''},
+      {id: 'mas6',checked: '',value: ''},
+      {id: 'mas7',checked: '',value: ''},
+      {id: 'mas8',checked: '',value: ''},
+      {id: 'mas9',checked: '',value: ''}
+    ]
+    
+    let targets = document.getElementsByClassName('mas');
+    let clickId = '';
+    
+    // click
+    for(let i = 0; i < targets.length; i++ ){
+      targets[i].addEventListener("click",() => {
+        
+        clickId = targets[i].getAttribute("id");
+        check();
+        
+        if(targets[i].classList.contains('clicked')) {
+          mas[i].checked = 'true';
+        }
+        
+        console.log(mas);
+        
+        
+        
+    	}, false);
+    };
+    
+    // check logic
+    var check = function() {
+      
+      // 
+      
+      add_span('maru');
+    }
+    
+    function add_span(masText) {
+      
+      // span要素
+      let span = document.createElement('span');
+      
+      let text = (masText === 'maru') ? '◯' : '×';
+      span.classList.add(masText);
+      span.textContent = text;
+
+      document.getElementById(clickId).appendChild(span);
+      document.getElementById(clickId).classList.add('clicked');
+      
+    }
+    
+    
+  </script>
+  
+  
+</html>
