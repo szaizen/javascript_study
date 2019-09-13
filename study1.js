@@ -375,5 +375,13 @@ arr.sort(function(a,b){ return a > b ? 1 : -1 });
 Object.freeze(arr);
 arr.sort();
 
+/*
+34.
+var arr = [3,4,5];をconcat以外で新たな配列としてarr2にコピーしてください。
+その後arr2[0]= 123を代入するとarrは何を出力するか答えなさい
+*/
+
+var arr = [3,4,5];
+let arr2 = arr.slice(0, arr.length);
 
 
