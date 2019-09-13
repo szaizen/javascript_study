@@ -497,3 +497,22 @@ keyList // ["name", "mail"]
 mailList // ["fafa@eee.com", "kkk@faf.com"]
 
 
+/*
+48.
+配列var passed = [12, 5, 8, 130, 44]の要素全てが10以上かどうかを評価してtrueかfalseを返してください。
+また10以上のものが一つでもあった場合trueを返してください。
+*/
+
+// 全て10以上かどうか
+passed.every(function(el) {
+	return (el >= 10)
+});
+// false
+
+// 10以上のものが1つでもあるかどうか
+passed.some(function(el) {
+	return (el >= 10)
+});
+// true
+
+
