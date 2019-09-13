@@ -363,6 +363,17 @@ function Factory(name) {
 const fafa = Factory('morita');
 fafa.introduce() //morita
 
+/*
+33.
+let arr = ['2','23','0','16'];
+を小さい順にソートしてください。
+その後ソートをできないようにread-onlyにしてください
+*/
+
+let arr = ['2','23','0','16'];
+arr.sort(function(a,b){ return a > b ? 1 : -1 });
+Object.freeze(arr);
+arr.sort();
 
 
 
