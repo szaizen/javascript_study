@@ -477,5 +477,23 @@ for(var i = 0; array.length; i++){
 }
 // 0.1
 
+/*
+47. 
+下記のような
+
+array = [
+{name: 'kenji', mail:'fafa@eee.com'},
+{name: 'morita', mail: 'kkk@faf.com'}
+]
+配列内にある連想配列のkeyとmail値を配列に格納して出力してください
+*/
+
+var keyList = Object.keys(array[0]);
+var mailList = array.map(function(el){
+	return el.mail;
+});
+
+keyList // ["name", "mail"]
+mailList // ["fafa@eee.com", "kkk@faf.com"]
 
 
