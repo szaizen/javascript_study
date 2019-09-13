@@ -420,6 +420,13 @@ iterator.next().value; // o
 iterator.next().value; // x
 iterator.next().value; // k
 
+/*
+41.配列['a', 'b', 'c', 'd', 'e'] のインデックス2番目に'morita'という要素を加えなさい。
+期待する結果['a', 'b','morita', 'c', 'd', 'e']
+*/
 
+var array = ['a', 'b', 'c', 'd', 'e'];
+array.splice(2,0,'morita');
+array //  ["a", "b", "morita", "c", "d", "e"]
 
 
