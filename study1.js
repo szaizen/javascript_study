@@ -435,3 +435,12 @@ array //  ["a", "b", "morita", "c", "d", "e"]
 
 var o = Object.create(Object.prototype);
 
+/*
+43. {p: 42}となるようなオブジェクトをObjectメンバを使って生成してください
+*/
+
+o = Object.create({},{p: {value: 42}});
+
+
+
+
