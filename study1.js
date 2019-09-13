@@ -442,5 +442,18 @@ var o = Object.create(Object.prototype);
 o = Object.create({},{p: {value: 42}});
 
 
+/*
+44. 1234という数字を文字列に変更後、配列の要素としてインデックス順に格納してください
+*/
+
+var temp = 1234;
+temp = String(temp);
+var array = [];
+
+for(var i = 0; i < temp.length; i++ ) {
+	array[i] = temp.charAt(i);
+}
+
+array // ["1", "2", "3", "4"]
 
 
