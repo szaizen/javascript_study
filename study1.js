@@ -515,4 +515,16 @@ passed.some(function(el) {
 });
 // true
 
+/*
+49. 二次元配列
+[['one', 'info@fa'],['two', 'send@fafa'],['three', 'hoso@fafa']
+];
+の'two'の値を取得してください
+*/
+
+var fafa = [['one', 'info@fa'],['two', 'send@fafa'],['three', 'hoso@fafa']
+];
+var map = new Map(fafa);
+map.get('two');
+
 
