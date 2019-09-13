@@ -399,3 +399,14 @@ const _error = function(message) {
 const getSum = (a = _error('a is not defined'), b = _error('b is not defined') ) => a + b
 
 
+/*
+39.
+配列var arr = ['f','o','x','k'];をインデックス順に出力させてください
+*/
+
+arr.forEach((el) => {
+	console.log(el);
+});
+
+
+
