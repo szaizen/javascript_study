@@ -384,4 +384,18 @@ var arr = [3,4,5];をconcat以外で新たな配列としてarr2にコピーし�
 var arr = [3,4,5];
 let arr2 = arr.slice(0, arr.length);
 
+/*
+35.
+こちらは2つのパラメーターを足して返すgetSum関数です。
+const getSum = (a, b) => a + b
+このパラメーターに何もわたってこなかった場合Errorをスローすようにしてください
+期待する結果 getSum(10) //throws b is not defined getSum(undefined, 10) //throws a is not defined
+*/
+
+
+const _error = function(message) {
+    throw new Error(message);
+};
+const getSum = (a = _error('a is not defined'), b = _error('b is not defined') ) => a + b
+
 
