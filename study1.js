@@ -528,3 +528,9 @@ var map = new Map(fafa);
 map.get('two');
 
 
+/*
+50. 問49の変数fafaにインデックス3番目の要素として['four',fafa@eee]の配列を追加してください
+*/
+
+map.set('four','fafa@eee');
+
