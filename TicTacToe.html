@@ -19,7 +19,7 @@
         display: flex;
         justify-content: center;
       }
-      .mas {
+      .cell {
         width: 100px;
         height: 100px;
         margin: -1px;
@@ -30,7 +30,7 @@
         align-items: center;
         cursor: pointer;
       }
-      .mas:hover {
+      .cell:hover {
         background-color: #29cebd;
       }
       .maru {
@@ -56,21 +56,21 @@
       <div id="frame">
         
         <div class="row">
-          <div id="mas1" class="mas"></div>
-          <div id="mas2" class="mas"></div>
-          <div id="mas3" class="mas"></div>
+          <div id="cell1_1" class="cell"></div>
+          <div id="cell1_2" class="cell"></div>
+          <div id="cell1_3" class="cell"></div>
         </div>
         
         <div class="row">
-          <div id="mas4" class="mas"></div>
-          <div id="mas5" class="mas"></div>
-          <div id="mas6" class="mas"></div>
+          <div id="cell2_1" class="cell"></div>
+          <div id="cell2_2" class="cell"></div>
+          <div id="cell2_3" class="cell"></div>
         </div>
         
         <div class="row">
-          <div id="mas7" class="mas"></div>
-          <div id="mas8" class="mas"></div>
-          <div id="mas9" class="mas"></div>
+          <div id="cell3_1" class="cell"></div>
+          <div id="cell3_2" class="cell"></div>
+          <div id="cell3_3" class="cell"></div>
         </div>
         
       </div>
@@ -94,36 +94,20 @@
     ・クリックするところがない
     
     */
-    
-    mas = [
-      {id: 'mas1',checked: '',value: ''},
-      {id: 'mas2',checked: '',value: ''},
-      {id: 'mas3',checked: '',value: ''},
-      {id: 'mas4',checked: '',value: ''},
-      {id: 'mas5',checked: '',value: ''},
-      {id: 'mas6',checked: '',value: ''},
-      {id: 'mas7',checked: '',value: ''},
-      {id: 'mas8',checked: '',value: ''},
-      {id: 'mas9',checked: '',value: ''}
-    ]
-    
-    let targets = document.getElementsByClassName('mas');
+
+    // let notCheckMas = ['cell1','cell2','cell3','cell4','cell5','cell6','cell7','cell8','cell9'];
+    let cell = [ ['','',''],['','',''],['','',''] ];
+    let availableCell = [];
+    let targets = document.getElementsByClassName('cell');
     let clickId = '';
     
-    // click
+    // clickイベント
     for(let i = 0; i < targets.length; i++ ){
+
       targets[i].addEventListener("click",() => {
         
         clickId = targets[i].getAttribute("id");
         check();
-        
-        if(targets[i].classList.contains('clicked')) {
-          mas[i].checked = 'true';
-        }
-        
-        console.log(mas);
-        
-        
         
     	}, false);
     };
@@ -131,23 +115,87 @@
     // check logic
     var check = function() {
       
-      // 
-      
-      add_span('maru');
+      // 1.クリックされたところを◯にする
+      addHtml('maru',clickId);
+
+      // 2.◯が揃ったか確認
+      let result = false;
+      result = completeCheck();
+
+      if (result) {
+        alert("finish");
+      }
+
+      // 3.空いてるところを×にする
+      searchAvailableCell();
+
+
+      let randomBatuNumber = Math.floor((Math.random() * availableCell.length));
+      addHtml('batu',availableCell[randomBatuNumber]);
+
+      // 4.×が揃ったか確認
+
+      // 5.クリックするところがあるか確認
     }
     
-    function add_span(masText) {
-      
-      // span要素
-      let span = document.createElement('span');
-      
-      let text = (masText === 'maru') ? '◯' : '×';
-      span.classList.add(masText);
-      span.textContent = text;
+    // ◯または×の要素を追加する
+    function addHtml(cellText,elementId) {
 
-      document.getElementById(clickId).appendChild(span);
-      document.getElementById(clickId).classList.add('clicked');
-      
+      let span = document.createElement('span');                // span要素
+      span.classList.add(cellText);                             // クラス追加
+      span.textContent = (cellText === 'maru') ? '◯' : '×';;    // テキスト追加
+
+      document.getElementById(elementId).appendChild(span);       // 子要素にspan追加
+      document.getElementById(elementId).classList.add('clicked');// class追加して非活性に
+
+      cell[Number(elementId.slice(4,5))-1][Number(elementId.slice(6,7))-1] = cellText;
+
+      /*
+      if(cellText === 'maru') {
+        text = '◯'
+        cell[Number(clickId.slice(4,5))-1][Number(clickId.slice(6,7))-1] = 'maru';
+      } else {
+
+        // 空いているcellを探す
+
+
+        text = '×'
+        cell[Number(clickId.slice(4,5))-1][Number(clickId.slice(6,7))-1] = 'batu';
+      }
+      */
+    }
+
+    // 追加可能なcellを検索
+
+    function searchAvailableCell() {
+      availableCell.length = 0;
+      for(let i = 0; i < cell.length; i++) {
+        for(let j = 0; j < cell[i].length; j++){
+          if(cell[i][j] == '') {
+            availableCell.push(`cell${i+1}_${j+1}`);
+          }
+        }
+      }
+    }
+
+    
+
+    
+    // return true or false
+    function completeCheck() {
+
+      // 横一列の場合
+      // rowの値が全て同じ値
+      if (cell.some((el) => el.every(v => (v === el[0] && (v !== '' ))))) {
+        return true
+      } else {
+        return false;  
+      }
+
+      // 縦一列の場合
+
+      console.log('test');
+
     }
     
     
