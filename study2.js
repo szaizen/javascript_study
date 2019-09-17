@@ -18,3 +18,11 @@ for(var entry of entries) {
 	console.log(entry);
 }
 
+/*
+52.'morita kenji'のような1つ以上の小英字、半角スペース、1つ以上の小英字にマッチした場合、
+配列['morita kenji']が返るようにしてください。
+
+*/
+
+/\w+\s\w+/.exec('morita kenji');
+
