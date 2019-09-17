@@ -55,5 +55,12 @@ var kk = li();
 
 kk('home'); //my home
 
+/*
+62.今の時間、何時何分何秒を表してください
+*/
+
+var now = new Date();
+console.log(`${now.getHours()}時${now.getMinutes()}分${now.getSeconds()}秒`);
+
 
 
