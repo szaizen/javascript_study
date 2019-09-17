@@ -41,3 +41,19 @@ textCheck(str); // false
 textCheck(str2); // true
 
 
+/*
+61.関数iiを実行すると返り値で関数を受け取り、
+その関数に引数'home'を渡し実行すると'my home'と返ってくるクロージャーを作ってください
+*/
+var li = ( ()=>{
+	return (value) => {
+		console.log(`my ${value}`);
+	}
+});
+
+var kk = li();
+
+kk('home'); //my home
+
+
+
