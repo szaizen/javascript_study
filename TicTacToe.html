@@ -11,7 +11,7 @@
         color: #fff;
       }
       #body {
-        width: 500px;
+        width: 360px;
         margin: auto;
         text-align: center;
       }
@@ -41,162 +41,185 @@
         font-weight: 900;
         line-height: 0.6;
         margin-top: -14px;
+        animation: delaydisplay 0.6s ease-in-out;
       }
       .clicked {
         pointer-events: none;
+      }
+      #result {
+        opacity: 0;
+        transition: 2.8s;
+        position: absolute;
+        top: 140px;
+        left: 0;
+        width: 100vw;
+        text-align: center;
+        font-size: 50px;
+        font-weight: bold;
+      }
+      @keyframes delaydisplay {
+        0% { opacity: 0; }
+        80% { opacity: 0; }
+        100% { opacity: 1; }
       }
     </style>
   </head>
   <body>
     
     <section id="body">
-      
+
       <h1>三目並べしましょう</h1>
-    
+
       <div id="frame">
-        
+
         <div class="row">
           <div id="cell1_1" class="cell"></div>
           <div id="cell1_2" class="cell"></div>
           <div id="cell1_3" class="cell"></div>
         </div>
-        
+
         <div class="row">
           <div id="cell2_1" class="cell"></div>
           <div id="cell2_2" class="cell"></div>
           <div id="cell2_3" class="cell"></div>
         </div>
-        
+
         <div class="row">
           <div id="cell3_1" class="cell"></div>
           <div id="cell3_2" class="cell"></div>
           <div id="cell3_3" class="cell"></div>
         </div>
-        
+
       </div>
-    
-    
+      
+      <div id="result"></div>
+
     </section>
+
     
   </body>
   
   <script type="text/javascript">
     
-    /*
+
+  /*
+
+  クリックしたらイベント発火
+
+  ・クリックされたところが◯
+  ・それ以外の場所に×
+
+  イベント終了ロジック
+  ・横、縦、斜めに3つ揃った
+  ・クリックするところがない
+
+  */
+
+  let cell = [ ['','',''],['','',''],['','',''] ];
+  let availableCell = [];
+  let targets = document.getElementsByClassName('cell');
+  let clickId = '';
+
+  // clickイベント
+  for(let i = 0; i < targets.length; i++ ){
+    targets[i].addEventListener("click",() => {
+      clickId = targets[i].getAttribute("id");
+      check();
+    }, false);
+  };
+
+  // check logic
+  var check = function() {
+
+    // 1.クリックされたところを◯にする
+    addHtml('maru',clickId);
+
+    // 2.◯が揃ったか確認
+    if (completeCheck()) { resultDisplay('◯'); };
     
-    クリックしたらイベント発火
+    // 3.空いてるところを×にする
+    searchAvailableCell();
+
+    let randomBatuNumber = Math.floor((Math.random() * availableCell.length));
+    addHtml('batu',availableCell[randomBatuNumber]);
+
+    // 4.×が揃ったか確認
+    if (completeCheck()) { resultDisplay('×'); };
+
+  }
+
+  // ◯または×の要素を追加する
+  function addHtml(cellText,elementId) {
+
+    let span = document.createElement('span');                // span要素
+    span.classList.add(cellText);                             // クラス追加
+    span.textContent = (cellText === 'maru') ? '◯' : '×';;    // テキスト追加
+
+    document.getElementById(elementId).appendChild(span);       // 子要素にspan追加
+    document.getElementById(elementId).classList.add('clicked');// class追加して非活性に
+
+    cell[Number(elementId.slice(4,5))-1][Number(elementId.slice(6,7))-1] = cellText;
     
-    ・クリックされたところが◯
-    ・それ以外の場所に×
-    
-    イベント終了ロジック
-    ・横、縦、斜めに3つ揃った
-    ・クリックするところがない
-    
-    */
+  }
 
-    // let notCheckMas = ['cell1','cell2','cell3','cell4','cell5','cell6','cell7','cell8','cell9'];
-    let cell = [ ['','',''],['','',''],['','',''] ];
-    let availableCell = [];
-    let targets = document.getElementsByClassName('cell');
-    let clickId = '';
-    
-    // clickイベント
-    for(let i = 0; i < targets.length; i++ ){
-
-      targets[i].addEventListener("click",() => {
-        
-        clickId = targets[i].getAttribute("id");
-        check();
-        
-    	}, false);
-    };
-    
-    // check logic
-    var check = function() {
-      
-      // 1.クリックされたところを◯にする
-      addHtml('maru',clickId);
-
-      // 2.◯が揃ったか確認
-      let result = false;
-      result = completeCheck();
-
-      if (result) {
-        alert("finish");
-      }
-
-      // 3.空いてるところを×にする
-      searchAvailableCell();
-
-
-      let randomBatuNumber = Math.floor((Math.random() * availableCell.length));
-      addHtml('batu',availableCell[randomBatuNumber]);
-
-      // 4.×が揃ったか確認
-
-      // 5.クリックするところがあるか確認
-    }
-    
-    // ◯または×の要素を追加する
-    function addHtml(cellText,elementId) {
-
-      let span = document.createElement('span');                // span要素
-      span.classList.add(cellText);                             // クラス追加
-      span.textContent = (cellText === 'maru') ? '◯' : '×';;    // テキスト追加
-
-      document.getElementById(elementId).appendChild(span);       // 子要素にspan追加
-      document.getElementById(elementId).classList.add('clicked');// class追加して非活性に
-
-      cell[Number(elementId.slice(4,5))-1][Number(elementId.slice(6,7))-1] = cellText;
-
-      /*
-      if(cellText === 'maru') {
-        text = '◯'
-        cell[Number(clickId.slice(4,5))-1][Number(clickId.slice(6,7))-1] = 'maru';
-      } else {
-
-        // 空いているcellを探す
-
-
-        text = '×'
-        cell[Number(clickId.slice(4,5))-1][Number(clickId.slice(6,7))-1] = 'batu';
-      }
-      */
-    }
-
-    // 追加可能なcellを検索
-
-    function searchAvailableCell() {
-      availableCell.length = 0;
-      for(let i = 0; i < cell.length; i++) {
-        for(let j = 0; j < cell[i].length; j++){
-          if(cell[i][j] == '') {
-            availableCell.push(`cell${i+1}_${j+1}`);
-          }
+  // 追加可能なcellを検索
+  function searchAvailableCell() {
+    availableCell.length = 0;
+    for(let i = 0; i < cell.length; i++) {
+      for(let j = 0; j < cell[i].length; j++){
+        if(cell[i][j] == '') {
+          availableCell.push(`cell${i+1}_${j+1}`);
         }
       }
     }
+    // もう入力するところがない場合は引き分け
+    if( availableCell.length === 0 ) { resultDisplay('draw'); };
+  }
 
-    
+  // return true or false
+  function completeCheck() {
 
-    
-    // return true or false
-    function completeCheck() {
+    // 横一列の場合
+    // rowの値が全て同じ値
+    if (cell.some((el) => el.every(v => (v === el[0] && (v !== '' ))))) {
+      return true
+    } 
 
-      // 横一列の場合
-      // rowの値が全て同じ値
-      if (cell.some((el) => el.every(v => (v === el[0] && (v !== '' ))))) {
-        return true
-      } else {
-        return false;  
-      }
+    // 縦一列の場合
+    for(let i = 0; i < 3; i++) {
+      if(cell[0][i] === cell[1][i] && cell[1][i] === cell[2][i] && cell[0][i] != '') {
+        return true;
+      };
+    };
 
-      // 縦一列の場合
-
-      console.log('test');
-
+    // 斜めの場合
+    if( (cell[0][0] === cell[1][1] && cell[1][1] === cell[2][2] && cell[0][0] != '') ||
+        (cell[0][2] === cell[1][1] && cell[1][1] === cell[2][0] && cell[0][2] != '')  ) {
+      return true;
     }
+
+    return false;
+
+  }
+
+
+  // 結果表示
+  function resultDisplay(value) {
+    
+    // value ◯が勝利か、×が勝利か、引き分けか
+    if(value === 'draw') {
+      document.getElementById('result').innerHTML = 'draw!!';
+    } else {
+      document.getElementById('result').innerHTML = `${value}<br>Winner!!`;
+    }
+    
+    document.getElementById('result').style.opacity = 1;
+    document.getElementById('frame').style.opacity = 0.5;
+    document.getElementById('frame').style.disabled = true;
+    
+    exit; // 処理終了
+    
+  }
     
     
   </script>
